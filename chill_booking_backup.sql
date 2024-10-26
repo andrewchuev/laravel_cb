@@ -16,6 +16,247 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `additional_services`
+--
+
+DROP TABLE IF EXISTS `additional_services`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `additional_services` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` tinyint unsigned NOT NULL,
+  `using` tinyint unsigned NOT NULL,
+  `max_qty` int unsigned DEFAULT NULL,
+  `price` double unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `additional_services`
+--
+
+LOCK TABLES `additional_services` WRITE;
+/*!40000 ALTER TABLE `additional_services` DISABLE KEYS */;
+/*!40000 ALTER TABLE `additional_services` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `booking_additional_services`
+--
+
+DROP TABLE IF EXISTS `booking_additional_services`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `booking_additional_services` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `booking_id` bigint unsigned NOT NULL,
+  `additional_service_id` bigint unsigned DEFAULT NULL,
+  `qty` int unsigned DEFAULT NULL,
+  `value` double DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `booking_additional_services_booking_id_foreign` (`booking_id`),
+  KEY `booking_additional_services_additional_service_id_foreign` (`additional_service_id`),
+  CONSTRAINT `booking_additional_services_additional_service_id_foreign` FOREIGN KEY (`additional_service_id`) REFERENCES `additional_services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `booking_additional_services_booking_id_foreign` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `booking_additional_services`
+--
+
+LOCK TABLES `booking_additional_services` WRITE;
+/*!40000 ALTER TABLE `booking_additional_services` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking_additional_services` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `booking_consignment_groups`
+--
+
+DROP TABLE IF EXISTS `booking_consignment_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `booking_consignment_groups` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `booking_id` bigint unsigned NOT NULL,
+  `temperature_mode_id` bigint unsigned NOT NULL,
+  `total_qty` double DEFAULT NULL,
+  `total_spaces` double DEFAULT NULL,
+  `total_volume` double DEFAULT NULL,
+  `total_weight` double DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `booking_consignment_groups_booking_id_foreign` (`booking_id`),
+  KEY `booking_consignment_groups_temperature_mode_id_foreign` (`temperature_mode_id`),
+  CONSTRAINT `booking_consignment_groups_booking_id_foreign` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `booking_consignment_groups_temperature_mode_id_foreign` FOREIGN KEY (`temperature_mode_id`) REFERENCES `temperature_modes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `booking_consignment_groups`
+--
+
+LOCK TABLES `booking_consignment_groups` WRITE;
+/*!40000 ALTER TABLE `booking_consignment_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking_consignment_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `booking_consignments`
+--
+
+DROP TABLE IF EXISTS `booking_consignments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `booking_consignments` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `booking_consignment_group_id` bigint unsigned NOT NULL,
+  `consignment_id` bigint unsigned NOT NULL,
+  `qty` int unsigned NOT NULL,
+  `length` double unsigned DEFAULT NULL,
+  `width` double unsigned DEFAULT NULL,
+  `height` double unsigned DEFAULT NULL,
+  `weight` double unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `booking_consignments_booking_consignment_group_id_foreign` (`booking_consignment_group_id`),
+  KEY `booking_consignments_consignment_id_foreign` (`consignment_id`),
+  CONSTRAINT `booking_consignments_booking_consignment_group_id_foreign` FOREIGN KEY (`booking_consignment_group_id`) REFERENCES `booking_consignment_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `booking_consignments_consignment_id_foreign` FOREIGN KEY (`consignment_id`) REFERENCES `consignments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `booking_consignments`
+--
+
+LOCK TABLES `booking_consignments` WRITE;
+/*!40000 ALTER TABLE `booking_consignments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking_consignments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `booking_consumables`
+--
+
+DROP TABLE IF EXISTS `booking_consumables`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `booking_consumables` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `booking_consignment_group_id` bigint unsigned NOT NULL,
+  `consumable_id` bigint unsigned NOT NULL,
+  `qty` int unsigned NOT NULL,
+  `length` double unsigned DEFAULT NULL,
+  `width` double unsigned DEFAULT NULL,
+  `height` double unsigned DEFAULT NULL,
+  `weight` double unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `booking_consumables_booking_consignment_group_id_foreign` (`booking_consignment_group_id`),
+  KEY `booking_consumables_consumable_id_foreign` (`consumable_id`),
+  CONSTRAINT `booking_consumables_booking_consignment_group_id_foreign` FOREIGN KEY (`booking_consignment_group_id`) REFERENCES `booking_consignment_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `booking_consumables_consumable_id_foreign` FOREIGN KEY (`consumable_id`) REFERENCES `consumables` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `booking_consumables`
+--
+
+LOCK TABLES `booking_consumables` WRITE;
+/*!40000 ALTER TABLE `booking_consumables` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking_consumables` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `booking_pallet_management`
+--
+
+DROP TABLE IF EXISTS `booking_pallet_management`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `booking_pallet_management` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `booking_id` bigint unsigned NOT NULL,
+  `pallet_management_id` bigint unsigned NOT NULL,
+  `qty` tinyint unsigned NOT NULL,
+  `pallet_method` tinyint unsigned NOT NULL,
+  `account_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `booking_pallet_management_booking_id_foreign` (`booking_id`),
+  KEY `booking_pallet_management_pallet_management_id_foreign` (`pallet_management_id`),
+  CONSTRAINT `booking_pallet_management_booking_id_foreign` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `booking_pallet_management_pallet_management_id_foreign` FOREIGN KEY (`pallet_management_id`) REFERENCES `pallet_management` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `booking_pallet_management`
+--
+
+LOCK TABLES `booking_pallet_management` WRITE;
+/*!40000 ALTER TABLE `booking_pallet_management` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking_pallet_management` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bookings`
+--
+
+DROP TABLE IF EXISTS `bookings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bookings` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `booking_status` tinyint unsigned NOT NULL,
+  `payment_status` tinyint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job_reference` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dangerous_goods` tinyint(1) DEFAULT NULL,
+  `pickup_detail_id` bigint unsigned DEFAULT NULL,
+  `delivery_detail_id` bigint unsigned DEFAULT NULL,
+  `final_price` double DEFAULT NULL,
+  `total_qty` int unsigned DEFAULT NULL,
+  `total_spaces` int unsigned DEFAULT NULL,
+  `total_volume` int unsigned DEFAULT NULL,
+  `total_weight` int unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `bookings_pickup_detail_id_foreign` (`pickup_detail_id`),
+  KEY `bookings_delivery_detail_id_foreign` (`delivery_detail_id`),
+  CONSTRAINT `bookings_delivery_detail_id_foreign` FOREIGN KEY (`delivery_detail_id`) REFERENCES `delivery_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `bookings_pickup_detail_id_foreign` FOREIGN KEY (`pickup_detail_id`) REFERENCES `pickup_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bookings`
+--
+
+LOCK TABLES `bookings` WRITE;
+/*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `cache`
 --
 
@@ -61,6 +302,147 @@ CREATE TABLE `cache_locks` (
 LOCK TABLES `cache_locks` WRITE;
 /*!40000 ALTER TABLE `cache_locks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cache_locks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `consignment_additional_services`
+--
+
+DROP TABLE IF EXISTS `consignment_additional_services`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `consignment_additional_services` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `consignment_id` bigint unsigned NOT NULL,
+  `additional_service_id` bigint unsigned NOT NULL,
+  `booking_consignment_group_id` bigint unsigned NOT NULL,
+  `qty` int unsigned DEFAULT NULL,
+  `value` double DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `consignment_additional_services_consignment_id_foreign` (`consignment_id`),
+  KEY `consignment_additional_services_additional_service_id_foreign` (`additional_service_id`),
+  KEY `cons_add_services_booking_group_fk` (`booking_consignment_group_id`),
+  CONSTRAINT `cons_add_services_booking_group_fk` FOREIGN KEY (`booking_consignment_group_id`) REFERENCES `booking_consignment_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `consignment_additional_services_additional_service_id_foreign` FOREIGN KEY (`additional_service_id`) REFERENCES `additional_services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `consignment_additional_services_consignment_id_foreign` FOREIGN KEY (`consignment_id`) REFERENCES `consignments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `consignment_additional_services`
+--
+
+LOCK TABLES `consignment_additional_services` WRITE;
+/*!40000 ALTER TABLE `consignment_additional_services` DISABLE KEYS */;
+/*!40000 ALTER TABLE `consignment_additional_services` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `consignments`
+--
+
+DROP TABLE IF EXISTS `consignments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `consignments` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_qty` int unsigned DEFAULT NULL,
+  `max_length` double unsigned DEFAULT NULL,
+  `max_width` double unsigned DEFAULT NULL,
+  `max_height` double unsigned DEFAULT NULL,
+  `max_weight` double unsigned DEFAULT NULL,
+  `additional_service_id` bigint unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `consignments_additional_service_id_foreign` (`additional_service_id`),
+  CONSTRAINT `consignments_additional_service_id_foreign` FOREIGN KEY (`additional_service_id`) REFERENCES `additional_services` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `consignments`
+--
+
+LOCK TABLES `consignments` WRITE;
+/*!40000 ALTER TABLE `consignments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `consignments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `consumables`
+--
+
+DROP TABLE IF EXISTS `consumables`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `consumables` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_qty` int unsigned DEFAULT NULL,
+  `length` double unsigned DEFAULT NULL,
+  `width` double unsigned DEFAULT NULL,
+  `height` double unsigned DEFAULT NULL,
+  `weight` double unsigned DEFAULT NULL,
+  `price` double unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `consumables`
+--
+
+LOCK TABLES `consumables` WRITE;
+/*!40000 ALTER TABLE `consumables` DISABLE KEYS */;
+/*!40000 ALTER TABLE `consumables` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `delivery_details`
+--
+
+DROP TABLE IF EXISTS `delivery_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `delivery_details` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `delivery_type` tinyint unsigned NOT NULL,
+  `delivery_time_type` tinyint unsigned NOT NULL,
+  `location_id` bigint unsigned DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lng` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `timeslot_from` time DEFAULT NULL,
+  `timeslot_to` time DEFAULT NULL,
+  `office_time` time DEFAULT NULL,
+  `contact_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `special_instructions` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `delivery_details_location_id_foreign` (`location_id`),
+  CONSTRAINT `delivery_details_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `delivery_details`
+--
+
+LOCK TABLES `delivery_details` WRITE;
+/*!40000 ALTER TABLE `delivery_details` DISABLE KEYS */;
+/*!40000 ALTER TABLE `delivery_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -153,6 +535,66 @@ LOCK TABLES `jobs` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `location_schedules`
+--
+
+DROP TABLE IF EXISTS `location_schedules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `location_schedules` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `location_id` bigint unsigned NOT NULL,
+  `day_number` int unsigned DEFAULT NULL,
+  `from` time DEFAULT NULL,
+  `to` time DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `location_schedules_location_id_foreign` (`location_id`),
+  CONSTRAINT `location_schedules_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `location_schedules`
+--
+
+LOCK TABLES `location_schedules` WRITE;
+/*!40000 ALTER TABLE `location_schedules` DISABLE KEYS */;
+/*!40000 ALTER TABLE `location_schedules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `locations`
+--
+
+DROP TABLE IF EXISTS `locations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `locations` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lng` double DEFAULT NULL,
+  `lat` double DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `locations`
+--
+
+LOCK TABLES `locations` WRITE;
+/*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `locations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -164,7 +606,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +615,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2020_10_04_115514_create_moonshine_roles_table',2),(5,'2020_10_05_173148_create_moonshine_tables',2),(6,'2022_12_19_115549_create_moonshine_socialites_table',2),(7,'9999_12_20_173629_create_notifications_table',2);
+INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2020_10_04_115514_create_moonshine_roles_table',2),(5,'2020_10_05_173148_create_moonshine_tables',2),(6,'2022_12_19_115549_create_moonshine_socialites_table',2),(7,'9999_12_20_173629_create_notifications_table',2),(23,'2024_08_23_110909_create_additional_services_table',3),(24,'2024_08_26_121732_create_consumables_table',3),(25,'2024_08_26_172331_create_consignments_table',3),(26,'2024_08_27_190828_create_temperature_modes_table',3),(27,'2024_08_27_202957_create_pallet_management_table',3),(28,'2024_08_28_121237_create_locations_table',3),(29,'2024_08_29_134111_create_pickup_details_table',3),(30,'2024_08_29_134127_create_delivery_details_table',3),(31,'2024_08_30_192221_create_bookings_table',3),(32,'2024_08_30_194823_create_booking_additional_services_table',3),(33,'2024_08_30_195721_create_booking_pallet_management_table',3),(34,'2024_08_30_204235_create_booking_consignment_groups_table',3),(35,'2024_08_30_204609_create_booking_consignments_table',3),(36,'2024_08_30_204908_create_booking_consumables_table',3),(37,'2024_08_30_211153_create_consignment_additional_services_table',3);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,6 +738,33 @@ LOCK TABLES `notifications` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pallet_management`
+--
+
+DROP TABLE IF EXISTS `pallet_management`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pallet_management` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exchangeble` tinyint(1) NOT NULL,
+  `transferable` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pallet_management`
+--
+
+LOCK TABLES `pallet_management` WRITE;
+/*!40000 ALTER TABLE `pallet_management` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pallet_management` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `password_reset_tokens`
 --
 
@@ -317,6 +786,48 @@ CREATE TABLE `password_reset_tokens` (
 LOCK TABLES `password_reset_tokens` WRITE;
 /*!40000 ALTER TABLE `password_reset_tokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `password_reset_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pickup_details`
+--
+
+DROP TABLE IF EXISTS `pickup_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pickup_details` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `delivery_type` tinyint unsigned NOT NULL,
+  `delivery_time_type` tinyint unsigned NOT NULL,
+  `location_id` bigint unsigned DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lng` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `timeslot_from` time DEFAULT NULL,
+  `timeslot_to` time DEFAULT NULL,
+  `office_time` time DEFAULT NULL,
+  `contact_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `special_instructions` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pickup_details_location_id_foreign` (`location_id`),
+  CONSTRAINT `pickup_details_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pickup_details`
+--
+
+LOCK TABLES `pickup_details` WRITE;
+/*!40000 ALTER TABLE `pickup_details` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pickup_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -345,8 +856,33 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('lzEEF6xloI3SiWZkdquq8elcRPmlHPBVaHlsOudj',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZHdEV1NGVzFUUVA2OTN0dk9abFZuSGx0czNBeVZyZHRwb0xSNzNJViI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoxMDU6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZT9jaGFuZ2UtbW9vbnNoaW5lLWxvY2FsZT1lbiI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjEwNToiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL21vb24tc2hpbmUtdXNlci1yZXNvdXJjZS9pbmRleC1wYWdlP2NoYW5nZS1tb29uc2hpbmUtbG9jYWxlPWVuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1729964727),('qtBhY3l4H0LdpAmbWpxi0Es3bSOhboQckv4KCJw5',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo3OntzOjY6Il90b2tlbiI7czo0MDoieHhGTkExWTgwR1pUcFdzWXFDT0w1RWg3QXc3U05DTzd5azNvRjBITSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzg6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjU2OiJsb2dpbl9tb29uc2hpbmVfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjM6InBhc3N3b3JkX2hhc2hfbW9vbnNoaW5lIjtzOjYwOiIkMnkkMTIkYkR5QzNlalZhbVpoRDMwUlJEQWEuT1VqSjNmV2JBL1I5cUJILmNEWFZsRGg0QWdFTDkwNkMiO3M6MjM6ImNoYW5nZS1tb29uc2hpbmUtbG9jYWxlIjtzOjI6ImVuIjt9',1729965030),('Ucr4FwGKZmKK9mmWt83rL1lWpSbOf3YooaoPCmD7',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRElQYlFXRmczVTRmYXJxQ1FMdzFIdUN5MUJzM3pPR2hRejF5OENZeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1729964728);
+INSERT INTO `sessions` VALUES ('lzEEF6xloI3SiWZkdquq8elcRPmlHPBVaHlsOudj',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZHdEV1NGVzFUUVA2OTN0dk9abFZuSGx0czNBeVZyZHRwb0xSNzNJViI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoxMDU6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZT9jaGFuZ2UtbW9vbnNoaW5lLWxvY2FsZT1lbiI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjEwNToiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL21vb24tc2hpbmUtdXNlci1yZXNvdXJjZS9pbmRleC1wYWdlP2NoYW5nZS1tb29uc2hpbmUtbG9jYWxlPWVuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1729964727),('qtBhY3l4H0LdpAmbWpxi0Es3bSOhboQckv4KCJw5',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo3OntzOjY6Il90b2tlbiI7czo0MDoieHhGTkExWTgwR1pUcFdzWXFDT0w1RWg3QXc3U05DTzd5azNvRjBITSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzg6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjU2OiJsb2dpbl9tb29uc2hpbmVfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjM6InBhc3N3b3JkX2hhc2hfbW9vbnNoaW5lIjtzOjYwOiIkMnkkMTIkYkR5QzNlalZhbVpoRDMwUlJEQWEuT1VqSjNmV2JBL1I5cUJILmNEWFZsRGg0QWdFTDkwNkMiO3M6MjM6ImNoYW5nZS1tb29uc2hpbmUtbG9jYWxlIjtzOjI6ImVuIjt9',1729966035),('Ucr4FwGKZmKK9mmWt83rL1lWpSbOf3YooaoPCmD7',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRElQYlFXRmczVTRmYXJxQ1FMdzFIdUN5MUJzM3pPR2hRejF5OENZeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1729964728);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `temperature_modes`
+--
+
+DROP TABLE IF EXISTS `temperature_modes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `temperature_modes` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `temperature_modes`
+--
+
+LOCK TABLES `temperature_modes` WRITE;
+/*!40000 ALTER TABLE `temperature_modes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `temperature_modes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -388,4 +924,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-26 20:52:23
+-- Dump completed on 2024-10-27  2:19:39

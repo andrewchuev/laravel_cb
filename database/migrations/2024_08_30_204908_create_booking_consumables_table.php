@@ -1,0 +1,37 @@
+<?php
+
+use App\Models\Booking;
+use App\Models\BookingConsignmentGroup;
+use App\Models\Consumable;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('booking_consumables', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(BookingConsignmentGroup::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(Consumable::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->unsignedInteger('qty');
+            $table->double('length')->unsigned()->nullable();
+            $table->double('width')->unsigned()->nullable();
+            $table->double('height')->unsigned()->nullable();
+            $table->double('weight')->unsigned()->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('booking_consumables');
+    }
+};
