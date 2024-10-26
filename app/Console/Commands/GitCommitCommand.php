@@ -38,7 +38,7 @@ class GitCommitCommand extends Command
         // Run mysqldump to create a database backup
         $dumpCommand = "mysqldump -h $dbHost -u $dbUser -p$dbPassword $dbName > {$dbName}_backup.sql";
         $dumpResult = shell_exec($dumpCommand);
-        if ($dumpResult === null) {
+        if ($dumpResult === false) {
             $this->error('Failed to create database backup. Please check your configuration and try again.');
             return 1;
         }
@@ -46,15 +46,15 @@ class GitCommitCommand extends Command
 
         // Run git add -A
         $addResult = shell_exec('git add -A');
-        if ($addResult === null) {
+        if ($addResult === false) {
             $this->error('Failed to add changes to git.');
             return 1;
         }
-        $this->info($addResult);
+        $this->info('Changes added to git.');
 
         // Run git commit -m
         $commitResult = shell_exec("git commit -m \"$message\"");
-        if ($commitResult === null) {
+        if ($commitResult === false) {
             $this->error('Failed to commit changes.');
             return 1;
         }
