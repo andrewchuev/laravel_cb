@@ -4,32 +4,34 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/**
- * @OA\Schema(
- *     schema="BookingResource",
- *     type="object",
- *     title="Booking Resource",
- *     description="Booking resource representation",
- *     @OA\Property(property="id", type="integer", description="ID of the booking"),
- *     @OA\Property(property="booking_status", type="integer", description="Status of the booking"),
- *     @OA\Property(property="payment_status", type="integer", description="Payment status of the booking"),
- *     @OA\Property(property="name", type="string", description="Name of the customer"),
- *     @OA\Property(property="company", type="string", description="Company of the customer"),
- *     @OA\Property(property="email", type="string", description="Email of the customer"),
- *     @OA\Property(property="phone_number", type="string", description="Phone number of the customer"),
- *     @OA\Property(property="job_reference", type="string", description="Job reference for the booking"),
- *     @OA\Property(property="dangerous_goods", type="boolean", description="Whether the booking involves dangerous goods"),
- *     @OA\Property(property="pickup_detail_id", type="integer", description="Pickup detail ID"),
- *     @OA\Property(property="delivery_detail_id", type="integer", description="Delivery detail ID"),
- *     @OA\Property(property="final_price", type="number", format="float", description="Final price of the booking"),
- *     @OA\Property(property="total_qty", type="integer", description="Total quantity of items"),
- *     @OA\Property(property="total_spaces", type="integer", description="Total number of spaces"),
- *     @OA\Property(property="total_volume", type="integer", description="Total volume of the booking"),
- *     @OA\Property(property="total_weight", type="integer", description="Total weight of the booking"),
- *     @OA\Property(property="created_at", type="string", format="date-time", description="Creation timestamp"),
- *     @OA\Property(property="updated_at", type="string", format="date-time", description="Last update timestamp")
- * )
- */
+use OpenApi\Attributes as OA;
+
+#[OA\Schema(
+    schema: "BookingResource",
+    title: "Booking Resource",
+    description: "Booking resource representation",
+    properties: [
+        new OA\Property(property: "id", description: "ID of the booking", type: "integer"),
+        new OA\Property(property: "booking_status", description: "Status of the booking", type: "integer"),
+        new OA\Property(property: "payment_status", description: "Payment status of the booking", type: "integer"),
+        new OA\Property(property: "name", description: "Name of the customer", type: "string"),
+        new OA\Property(property: "company", description: "Company of the customer", type: "string"),
+        new OA\Property(property: "email", description: "Email of the customer", type: "string"),
+        new OA\Property(property: "phone_number", description: "Phone number of the customer", type: "string"),
+        new OA\Property(property: "job_reference", description: "Job reference for the booking", type: "string"),
+        new OA\Property(property: "dangerous_goods", description: "Whether the booking involves dangerous goods", type: "boolean"),
+        new OA\Property(property: "pickup_detail_id", description: "Pickup detail ID", type: "integer"),
+        new OA\Property(property: "delivery_detail_id", description: "Delivery detail ID", type: "integer"),
+        new OA\Property(property: "final_price", description: "Final price of the booking", type: "number", format: "float"),
+        new OA\Property(property: "total_qty", description: "Total quantity of items", type: "integer"),
+        new OA\Property(property: "total_spaces", description: "Total number of spaces", type: "integer"),
+        new OA\Property(property: "total_volume", description: "Total volume of the booking", type: "integer"),
+        new OA\Property(property: "total_weight", description: "Total weight of the booking", type: "integer"),
+        new OA\Property(property: "created_at", description: "Creation timestamp", type: "string", format: "date-time"),
+        new OA\Property(property: "updated_at", description: "Last update timestamp", type: "string", format: "date-time"),
+    ],
+    type: "object"
+)]
 class BookingResource extends JsonResource
 {
     public function toArray($request): array
