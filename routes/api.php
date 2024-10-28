@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\V1\BookingController;
+use App\Http\Controllers\Api\V1\LocationController;
+use App\Http\Controllers\Api\V1\LocationScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\BookingController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -12,4 +14,6 @@ Route::get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::resource('bookings', BookingController::class);
+    Route::apiResource('locations', LocationController::class);
+    Route::apiResource('location-schedules', LocationScheduleController::class);
 })->middleware('auth:sanctum');

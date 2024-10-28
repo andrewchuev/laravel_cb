@@ -443,7 +443,7 @@ CREATE TABLE `delivery_details` (
 
 LOCK TABLES `delivery_details` WRITE;
 /*!40000 ALTER TABLE `delivery_details` DISABLE KEYS */;
-INSERT INTO `delivery_details` VALUES (1,2,3,NULL,'456 Delivery Ave','145.0365','-37.8286','2024-11-01 00:00:00','13:00:00','17:00:00',NULL,'Mark Smith','+9876543210','mark.smith@example.com','Delivery Co.','contact@deliveryco.com','Leave at the front door','2024-10-28 21:05:42','2024-10-28 21:05:42');
+INSERT INTO `delivery_details` VALUES (1,2,3,2,'456 Delivery Ave','145.0365','-37.8286','2024-11-01 00:00:00','13:00:00','17:00:00',NULL,'Mark Smith','+9876543210','mark.smith@example.com','Delivery Co.','contact@deliveryco.com','Leave at the front door','2024-10-28 21:05:42','2024-10-28 21:05:42');
 /*!40000 ALTER TABLE `delivery_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -584,7 +584,7 @@ CREATE TABLE `locations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -593,6 +593,7 @@ CREATE TABLE `locations` (
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+INSERT INTO `locations` VALUES (1,'Location #1 from',3454354,34545435,'Address #1','City 1','656565',NULL,NULL),(2,'Location #2 to',7778787,67767676,'Address #2','City 2','656565',NULL,NULL);
 /*!40000 ALTER TABLE `locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -862,7 +863,7 @@ CREATE TABLE `pickup_details` (
 
 LOCK TABLES `pickup_details` WRITE;
 /*!40000 ALTER TABLE `pickup_details` DISABLE KEYS */;
-INSERT INTO `pickup_details` VALUES (4,1,2,NULL,'123 Pickup St','144.9631','-37.8136','2024-10-30 00:00:00','09:00:00','12:00:00',NULL,'Jane Doe','+1234567890','jane.doe@example.com','JD Logistics','contact@jdlogistics.com','Handle with care','2024-10-28 21:05:42','2024-10-28 21:05:42');
+INSERT INTO `pickup_details` VALUES (4,1,2,1,'123 Pickup St','144.9631','-37.8136','2024-10-30 00:00:00','09:00:00','12:00:00',NULL,'Jane Doe','+1234567890','jane.doe@example.com','JD Logistics','contact@jdlogistics.com','Handle with care','2024-10-28 21:05:42','2024-10-28 21:05:42');
 /*!40000 ALTER TABLE `pickup_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -960,4 +961,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-28 23:08:06
+-- Dump completed on 2024-10-29  1:22:10

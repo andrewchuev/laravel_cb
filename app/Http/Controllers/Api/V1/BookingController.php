@@ -26,6 +26,35 @@ class BookingController extends Controller
     }
 
     #[OA\Get(
+        path: '/api/v1/bookings',
+        summary: 'Get all bookings',
+        tags: ['Bookings'],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Successful operation',
+                content: new OA\JsonContent(
+                    type: 'array',
+                    items: new OA\Items(ref: '#/components/schemas/BookingResource')
+                )
+            ),
+            new OA\Response(
+                response: 500,
+                description: 'Unable to fetch bookings'
+            )
+        ]
+    )]
+    public function index(): JsonResponse
+    {
+        try {
+            $bookings = $this->bookingService->getAllBookings();
+            return response()->json(BookingResource::collection($bookings));
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Unable to fetch bookings'], 500);
+        }
+    }
+
+    #[OA\Get(
         path: '/api/v1/bookings/{id}',
         summary: 'Get booking by ID',
         tags: ['Bookings'],
@@ -163,32 +192,5 @@ class BookingController extends Controller
         }
     }
 
-    #[OA\Get(
-        path: '/api/v1/bookings',
-        summary: 'Get all bookings',
-        tags: ['Bookings'],
-        responses: [
-            new OA\Response(
-                response: 200,
-                description: 'Successful operation',
-                content: new OA\JsonContent(
-                    type: 'array',
-                    items: new OA\Items(ref: '#/components/schemas/BookingResource')
-                )
-            ),
-            new OA\Response(
-                response: 500,
-                description: 'Unable to fetch bookings'
-            )
-        ]
-    )]
-    public function index(): JsonResponse
-    {
-        try {
-            $bookings = $this->bookingService->getAllBookings();
-            return response()->json(BookingResource::collection($bookings));
-        } catch (Exception $e) {
-            return response()->json(['error' => 'Unable to fetch bookings'], 500);
-        }
-    }
+
 }

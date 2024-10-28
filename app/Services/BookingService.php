@@ -9,10 +9,14 @@ use Illuminate\Support\Facades\DB;
 class BookingService
 {
     private BookingRepository $bookingRepository;
-    protected $pickupDetailRepository;
-    protected $deliveryDetailRepository;
+    protected PickupDetailRepository $pickupDetailRepository;
+    protected DeliveryDetailRepository $deliveryDetailRepository;
 
-    public function __construct(BookingRepository $bookingRepository, PickupDetailRepository $pickupDetailRepository, DeliveryDetailRepository $deliveryDetailRepository)
+    public function __construct(
+        BookingRepository $bookingRepository,
+        PickupDetailRepository $pickupDetailRepository,
+        DeliveryDetailRepository $deliveryDetailRepository
+    )
     {
         $this->bookingRepository = $bookingRepository;
         $this->pickupDetailRepository = $pickupDetailRepository;

@@ -17,7 +17,8 @@ class PickupDetailResource extends JsonResource
         return [
             'pickup_type' => $this->pickup_type,
             'pickup_time_type' => $this->pickup_time_type,
-            'location_id' => $this->location_id,
+            //'pickup_details' => new PickupDetailResource($this->pickupDetail),
+            'location' => $this->location_id,
             'address' => $this->address,
             'lng' => $this->lng,
             'lat' => $this->lat,

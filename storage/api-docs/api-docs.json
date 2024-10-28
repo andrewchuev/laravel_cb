@@ -6,6 +6,65 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/v1/bookings": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Get all bookings",
+                "operationId": "2f7e7260c708227e4c44de9d5b59ea36",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Unable to fetch bookings"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Create a new booking",
+                "operationId": "9ec8aa3de0d1efdd0cfe72c27eac745c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Booking created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingResource"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Unable to create booking"
+                    }
+                }
+            }
+        },
         "/api/v1/bookings/{id}": {
             "get": {
                 "tags": [
@@ -110,61 +169,292 @@
                 }
             }
         },
-        "/api/v1/bookings": {
+        "/api/v1/locations": {
             "get": {
                 "tags": [
-                    "Bookings"
+                    "Locations"
                 ],
-                "summary": "Get all bookings",
-                "operationId": "2f7e7260c708227e4c44de9d5b59ea36",
+                "summary": "Retrieve list of locations",
+                "operationId": "49873ce3b7837cc865db7849ec7cccda",
                 "responses": {
                     "200": {
-                        "description": "Successful operation",
+                        "description": "Successful response",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/BookingResource"
+                                        "$ref": "#/components/schemas/LocationResource"
                                     }
                                 }
                             }
                         }
-                    },
-                    "500": {
-                        "description": "Unable to fetch bookings"
                     }
                 }
             },
             "post": {
                 "tags": [
-                    "Bookings"
+                    "Locations"
                 ],
-                "summary": "Create a new booking",
-                "operationId": "9ec8aa3de0d1efdd0cfe72c27eac745c",
+                "summary": "Create a new location",
+                "operationId": "aff6a55f233e5e2483ad2a6b68576fbb",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/BookingRequest"
+                                "$ref": "#/components/schemas/LocationRequest"
                             }
                         }
                     }
                 },
                 "responses": {
                     "201": {
-                        "description": "Booking created successfully",
+                        "description": "Location created successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BookingResource"
+                                    "$ref": "#/components/schemas/LocationResource"
                                 }
                             }
                         }
-                    },
-                    "500": {
-                        "description": "Unable to create booking"
+                    }
+                }
+            }
+        },
+        "/api/v1/locations/{id}": {
+            "get": {
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Retrieve a specific location",
+                "operationId": "297bb90722857403e546b74145806a12",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LocationResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Update a specific location",
+                "operationId": "f8115ec393e6a83bc212ee2a6bbb5ee7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LocationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Location updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LocationResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Delete a specific location",
+                "operationId": "732da05f06d706d822b05dd8c62945aa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Location deleted successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/location-schedules": {
+            "get": {
+                "tags": [
+                    "Location Schedules"
+                ],
+                "summary": "Retrieve list of location schedules",
+                "operationId": "c4500500969a68cd8b3c0bc92efbe1b6",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LocationScheduleResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Location Schedules"
+                ],
+                "summary": "Create a new location schedule",
+                "operationId": "88e9d91671580a5281dd5bf88ed8c256",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LocationScheduleRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Location schedule created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LocationScheduleResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/location-schedules/{id}": {
+            "get": {
+                "tags": [
+                    "Location Schedules"
+                ],
+                "summary": "Retrieve a specific location schedule",
+                "operationId": "d4c613644853ec5a3f44813f2296feff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LocationScheduleResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Location Schedules"
+                ],
+                "summary": "Update a specific location schedule",
+                "operationId": "4f39fbc936a6fb2065706ed6d32ab3b1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LocationScheduleRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Location schedule updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LocationScheduleResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Location Schedules"
+                ],
+                "summary": "Delete a specific location schedule",
+                "operationId": "2534ed21795f6b05a8822f02c0ecc8b7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Location schedule deleted successfully"
                     }
                 }
             }
@@ -240,6 +530,80 @@
                     "total_weight": {
                         "description": "Total weight of the booking",
                         "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "LocationRequest": {
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "description": "Title of the location",
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "lng": {
+                        "description": "Longitude of the location",
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "lat": {
+                        "description": "Latitude of the location",
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "address": {
+                        "description": "Address of the location",
+                        "type": "string",
+                        "maxLength": 255,
+                        "nullable": true
+                    },
+                    "city": {
+                        "description": "City of the location",
+                        "type": "string",
+                        "maxLength": 255,
+                        "nullable": true
+                    },
+                    "postcode": {
+                        "description": "Postcode of the location",
+                        "type": "string",
+                        "maxLength": 255,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "LocationScheduleRequest": {
+                "required": [
+                    "location_id",
+                    "day_number"
+                ],
+                "properties": {
+                    "location_id": {
+                        "description": "ID of the location",
+                        "type": "integer"
+                    },
+                    "day_number": {
+                        "description": "Day number (0-6)",
+                        "type": "integer",
+                        "maximum": 6,
+                        "minimum": 0
+                    },
+                    "from": {
+                        "description": "Opening time",
+                        "type": "string",
+                        "format": "time",
+                        "nullable": true
+                    },
+                    "to": {
+                        "description": "Closing time",
+                        "type": "string",
+                        "format": "time",
+                        "nullable": true
                     }
                 },
                 "type": "object"
@@ -325,6 +689,105 @@
                     }
                 },
                 "type": "object"
+            },
+            "LocationResource": {
+                "properties": {
+                    "id": {
+                        "description": "ID of the location",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "Title of the location",
+                        "type": "string"
+                    },
+                    "lng": {
+                        "description": "Longitude of the location",
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "lat": {
+                        "description": "Latitude of the location",
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "address": {
+                        "description": "Address of the location",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "city": {
+                        "description": "City of the location",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "postcode": {
+                        "description": "Postcode of the location",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "Creation timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "schedules": {
+                        "description": "List of schedules for the location",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LocationScheduleResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "LocationScheduleResource": {
+                "properties": {
+                    "id": {
+                        "description": "ID of the schedule",
+                        "type": "integer"
+                    },
+                    "location_id": {
+                        "description": "ID of the location",
+                        "type": "integer"
+                    },
+                    "day_number": {
+                        "description": "Day number (0-6)",
+                        "type": "integer"
+                    },
+                    "from": {
+                        "description": "Opening time",
+                        "type": "string",
+                        "format": "time",
+                        "nullable": true
+                    },
+                    "to": {
+                        "description": "Closing time",
+                        "type": "string",
+                        "format": "time",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "Creation timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/LocationResource"
+                    }
+                },
+                "type": "object"
             }
         }
     },
@@ -332,6 +795,14 @@
         {
             "name": "Bookings",
             "description": "Bookings"
+        },
+        {
+            "name": "Locations",
+            "description": "Locations"
+        },
+        {
+            "name": "Location Schedules",
+            "description": "Location Schedules"
         }
     ]
 }
