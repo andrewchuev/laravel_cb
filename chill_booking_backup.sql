@@ -244,7 +244,7 @@ CREATE TABLE `bookings` (
   KEY `bookings_delivery_detail_id_foreign` (`delivery_detail_id`),
   CONSTRAINT `bookings_delivery_detail_id_foreign` FOREIGN KEY (`delivery_detail_id`) REFERENCES `delivery_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `bookings_pickup_detail_id_foreign` FOREIGN KEY (`pickup_detail_id`) REFERENCES `pickup_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +253,7 @@ CREATE TABLE `bookings` (
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
-INSERT INTO `bookings` VALUES (2,0,0,'string','string','test@mail.com','string','string',1,NULL,NULL,0,0,0,0,0,'2024-10-28 19:08:41','2024-10-28 19:08:41');
+INSERT INTO `bookings` VALUES (3,1,0,'John Doe','JD Logistics','john.doe@example.com','+1234567890','REF12345',0,4,1,250.5,10,2,5,100,'2024-10-28 21:05:42','2024-10-28 21:05:42');
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,7 +434,7 @@ CREATE TABLE `delivery_details` (
   PRIMARY KEY (`id`),
   KEY `delivery_details_location_id_foreign` (`location_id`),
   CONSTRAINT `delivery_details_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -443,6 +443,7 @@ CREATE TABLE `delivery_details` (
 
 LOCK TABLES `delivery_details` WRITE;
 /*!40000 ALTER TABLE `delivery_details` DISABLE KEYS */;
+INSERT INTO `delivery_details` VALUES (1,2,3,NULL,'456 Delivery Ave','145.0365','-37.8286','2024-11-01 00:00:00','13:00:00','17:00:00',NULL,'Mark Smith','+9876543210','mark.smith@example.com','Delivery Co.','contact@deliveryco.com','Leave at the front door','2024-10-28 21:05:42','2024-10-28 21:05:42');
 /*!40000 ALTER TABLE `delivery_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -852,7 +853,7 @@ CREATE TABLE `pickup_details` (
   PRIMARY KEY (`id`),
   KEY `pickup_details_location_id_foreign` (`location_id`),
   CONSTRAINT `pickup_details_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -861,6 +862,7 @@ CREATE TABLE `pickup_details` (
 
 LOCK TABLES `pickup_details` WRITE;
 /*!40000 ALTER TABLE `pickup_details` DISABLE KEYS */;
+INSERT INTO `pickup_details` VALUES (4,1,2,NULL,'123 Pickup St','144.9631','-37.8136','2024-10-30 00:00:00','09:00:00','12:00:00',NULL,'Jane Doe','+1234567890','jane.doe@example.com','JD Logistics','contact@jdlogistics.com','Handle with care','2024-10-28 21:05:42','2024-10-28 21:05:42');
 /*!40000 ALTER TABLE `pickup_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -890,7 +892,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('eVqo78WHe9zonnCmsqLls5sa3ABenwclik2WP8tc',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUE0wem4yeGhVN3FzcVpUblNKQ2hJNnlDbEltd0hiU1p5Ym1FaEpFNCI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1730116032),('l3VQHN7tAhj3YjyA2gGKeqcXa63uKHbNCp4n53MT',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNjFJc1RpQzBDOEtvaXdBQXZMdGgxVnV6ZEEzanNOdUd3MThiV3FqMCI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo3MDoiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL2Jvb2tpbmctcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1730072751),('lzEEF6xloI3SiWZkdquq8elcRPmlHPBVaHlsOudj',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZHdEV1NGVzFUUVA2OTN0dk9abFZuSGx0czNBeVZyZHRwb0xSNzNJViI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoxMDU6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZT9jaGFuZ2UtbW9vbnNoaW5lLWxvY2FsZT1lbiI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjEwNToiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL21vb24tc2hpbmUtdXNlci1yZXNvdXJjZS9pbmRleC1wYWdlP2NoYW5nZS1tb29uc2hpbmUtbG9jYWxlPWVuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1729964727),('qtBhY3l4H0LdpAmbWpxi0Es3bSOhboQckv4KCJw5',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo3OntzOjY6Il90b2tlbiI7czo0MDoieHhGTkExWTgwR1pUcFdzWXFDT0w1RWg3QXc3U05DTzd5azNvRjBITSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzg6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjU2OiJsb2dpbl9tb29uc2hpbmVfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjM6InBhc3N3b3JkX2hhc2hfbW9vbnNoaW5lIjtzOjYwOiIkMnkkMTIkYkR5QzNlalZhbVpoRDMwUlJEQWEuT1VqSjNmV2JBL1I5cUJILmNEWFZsRGg0QWdFTDkwNkMiO3M6MjM6ImNoYW5nZS1tb29uc2hpbmUtbG9jYWxlIjtzOjI6ImVuIjt9',1729966035),('Ucr4FwGKZmKK9mmWt83rL1lWpSbOf3YooaoPCmD7',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRElQYlFXRmczVTRmYXJxQ1FMdzFIdUN5MUJzM3pPR2hRejF5OENZeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1729964728);
+INSERT INTO `sessions` VALUES ('9Hy1qKWLZxui7nYZPXSk63LZJW9Ffmf9s4rVgljM',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoielJ4d3hvV09BbWJtWXpIYUZRbVlUZmVBd1VsWWRydUl1MWlOWU8xOSI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo3MDoiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL2Jvb2tpbmctcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1730149638);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -958,4 +960,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-28 22:30:15
+-- Dump completed on 2024-10-28 23:08:06

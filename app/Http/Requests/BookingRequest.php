@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -46,13 +47,45 @@ class BookingRequest extends FormRequest
             'phone_number' => 'nullable|string|max:255',
             'job_reference' => 'nullable|string|max:255',
             'dangerous_goods' => 'nullable|boolean',
-            'pickup_detail' => 'nullable|array',
-            'delivery_detail' => 'nullable|array',
             'final_price' => 'nullable|numeric',
             'total_qty' => 'nullable|integer',
             'total_spaces' => 'nullable|integer',
             'total_volume' => 'nullable|integer',
-            'total_weight' => 'nullable|integer'
+            'total_weight' => 'nullable|integer',
+
+            'pickup_details' => 'nullable|array',
+            'pickup_details.pickup_type' => 'required|integer',
+            'pickup_details.pickup_time_type' => 'required|integer',
+            'pickup_details.location_id' => 'nullable|exists:locations,id',
+            'pickup_details.address' => 'nullable|string|max:255',
+            'pickup_details.lng' => 'nullable|string|max:255',
+            'pickup_details.lat' => 'nullable|string|max:255',
+            'pickup_details.date' => 'nullable|date',
+            'pickup_details.timeslot_from' => 'nullable|date_format:H:i:s',
+            'pickup_details.timeslot_to' => 'nullable|date_format:H:i:s',
+            'pickup_details.contact_name' => 'nullable|string|max:255',
+            'pickup_details.contact_phone' => 'nullable|string|max:255',
+            'pickup_details.contact_email' => 'nullable|email|max:255',
+            'pickup_details.company_name' => 'nullable|string|max:255',
+            'pickup_details.company_email' => 'nullable|email|max:255',
+            'pickup_details.special_instructions' => 'nullable|string|max:255',
+
+            'delivery_details' => 'nullable|array',
+            'delivery_details.delivery_type' => 'required|integer',
+            'delivery_details.delivery_time_type' => 'required|integer',
+            'delivery_details.location_id' => 'nullable|exists:locations,id',
+            'delivery_details.address' => 'nullable|string|max:255',
+            'delivery_details.lng' => 'nullable|string|max:255',
+            'delivery_details.lat' => 'nullable|string|max:255',
+            'delivery_details.date' => 'nullable|date',
+            'delivery_details.timeslot_from' => 'nullable|date_format:H:i:s',
+            'delivery_details.timeslot_to' => 'nullable|date_format:H:i:s',
+            'delivery_details.contact_name' => 'nullable|string|max:255',
+            'delivery_details.contact_phone' => 'nullable|string|max:255',
+            'delivery_details.contact_email' => 'nullable|email|max:255',
+            'delivery_details.company_name' => 'nullable|string|max:255',
+            'delivery_details.company_email' => 'nullable|email|max:255',
+            'delivery_details.special_instructions' => 'nullable|string|max:255'
         ];
     }
 }
