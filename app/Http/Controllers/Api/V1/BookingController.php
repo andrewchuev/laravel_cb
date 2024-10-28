@@ -10,13 +10,12 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use OpenApi\Attributes as OA;
 
-/**
- * @OA\Info(
- *     version="1.0.0",
- *     title="ChillBooking API",
- *     description="API documentation for ChillBooking service"
- * )
- */
+#[OA\Info(
+    version: "1.0.0",
+    description: "API documentation for ChillBooking service",
+    title: "ChillBooking API"
+)
+]
 class BookingController extends Controller
 {
     private BookingService $bookingService;
@@ -55,7 +54,7 @@ class BookingController extends Controller
     {
         try {
             $booking = $this->bookingService->getBookingById($id);
-            return response()->json(new BookingResource($booking), 200);
+            return response()->json(new BookingResource($booking));
         } catch (Exception $e) {
             return response()->json(['error' => 'Booking not found'], 404);
         }
@@ -124,7 +123,7 @@ class BookingController extends Controller
     {
         try {
             $booking = $this->bookingService->updateBooking($id, $request->validated());
-            return response()->json(new BookingResource($booking), 200);
+            return response()->json(new BookingResource($booking));
         } catch (Exception $e) {
             return response()->json(['error' => 'Unable to update booking'], 500);
         }
@@ -158,7 +157,7 @@ class BookingController extends Controller
     {
         try {
             $this->bookingService->deleteBooking($id);
-            return response()->json(['message' => 'Booking deleted successfully'], 200);
+            return response()->json(['message' => 'Booking deleted successfully']);
         } catch (Exception $e) {
             return response()->json(['error' => 'Unable to delete booking'], 500);
         }
@@ -187,7 +186,7 @@ class BookingController extends Controller
     {
         try {
             $bookings = $this->bookingService->getAllBookings();
-            return response()->json(BookingResource::collection($bookings), 200);
+            return response()->json(BookingResource::collection($bookings));
         } catch (Exception $e) {
             return response()->json(['error' => 'Unable to fetch bookings'], 500);
         }

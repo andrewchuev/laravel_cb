@@ -212,13 +212,13 @@
                         "description": "Whether the booking involves dangerous goods",
                         "type": "boolean"
                     },
-                    "pickup_detail_id": {
-                        "description": "Pickup detail ID",
-                        "type": "integer"
+                    "pickup_detail": {
+                        "description": "Pickup detail",
+                        "type": "object"
                     },
-                    "delivery_detail_id": {
-                        "description": "Delivery detail ID",
-                        "type": "integer"
+                    "delivery_detail": {
+                        "description": "Delivery detail",
+                        "type": "object"
                     },
                     "final_price": {
                         "description": "Final price of the booking",
