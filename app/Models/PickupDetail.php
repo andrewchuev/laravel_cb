@@ -10,8 +10,8 @@ class PickupDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'delivery_type',
-        'delivery_time_type',
+        'pickup_type',
+        'pickup_time_type',
         'location_id',
         'address',
         'lng',

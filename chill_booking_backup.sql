@@ -244,7 +244,7 @@ CREATE TABLE `bookings` (
   KEY `bookings_delivery_detail_id_foreign` (`delivery_detail_id`),
   CONSTRAINT `bookings_delivery_detail_id_foreign` FOREIGN KEY (`delivery_detail_id`) REFERENCES `delivery_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `bookings_pickup_detail_id_foreign` FOREIGN KEY (`pickup_detail_id`) REFERENCES `pickup_details` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,6 +253,7 @@ CREATE TABLE `bookings` (
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
+INSERT INTO `bookings` VALUES (2,0,0,'string','string','test@mail.com','string','string',1,NULL,NULL,0,0,0,0,0,'2024-10-28 19:08:41','2024-10-28 19:08:41');
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -606,7 +607,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -615,7 +616,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2020_10_04_115514_create_moonshine_roles_table',2),(5,'2020_10_05_173148_create_moonshine_tables',2),(6,'2022_12_19_115549_create_moonshine_socialites_table',2),(7,'9999_12_20_173629_create_notifications_table',2),(23,'2024_08_23_110909_create_additional_services_table',3),(24,'2024_08_26_121732_create_consumables_table',3),(25,'2024_08_26_172331_create_consignments_table',3),(26,'2024_08_27_190828_create_temperature_modes_table',3),(27,'2024_08_27_202957_create_pallet_management_table',3),(28,'2024_08_28_121237_create_locations_table',3),(29,'2024_08_29_134111_create_pickup_details_table',3),(30,'2024_08_29_134127_create_delivery_details_table',3),(31,'2024_08_30_192221_create_bookings_table',3),(32,'2024_08_30_194823_create_booking_additional_services_table',3),(33,'2024_08_30_195721_create_booking_pallet_management_table',3),(34,'2024_08_30_204235_create_booking_consignment_groups_table',3),(35,'2024_08_30_204609_create_booking_consignments_table',3),(36,'2024_08_30_204908_create_booking_consumables_table',3),(37,'2024_08_30_211153_create_consignment_additional_services_table',3),(38,'2024_10_27_213204_create_personal_access_tokens_table',4);
+INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2020_10_04_115514_create_moonshine_roles_table',2),(5,'2020_10_05_173148_create_moonshine_tables',2),(6,'2022_12_19_115549_create_moonshine_socialites_table',2),(7,'9999_12_20_173629_create_notifications_table',2),(23,'2024_08_23_110909_create_additional_services_table',3),(24,'2024_08_26_121732_create_consumables_table',3),(25,'2024_08_26_172331_create_consignments_table',3),(26,'2024_08_27_190828_create_temperature_modes_table',3),(27,'2024_08_27_202957_create_pallet_management_table',3),(28,'2024_08_28_121237_create_locations_table',3),(29,'2024_08_29_134111_create_pickup_details_table',3),(30,'2024_08_29_134127_create_delivery_details_table',3),(31,'2024_08_30_192221_create_bookings_table',3),(32,'2024_08_30_194823_create_booking_additional_services_table',3),(33,'2024_08_30_195721_create_booking_pallet_management_table',3),(34,'2024_08_30_204235_create_booking_consignment_groups_table',3),(35,'2024_08_30_204609_create_booking_consignments_table',3),(36,'2024_08_30_204908_create_booking_consumables_table',3),(37,'2024_08_30_211153_create_consignment_additional_services_table',3),(38,'2024_10_27_213204_create_personal_access_tokens_table',4),(39,'2024_10_28_192156_rename_columns_in_pickup_details',5);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -830,8 +831,8 @@ DROP TABLE IF EXISTS `pickup_details`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pickup_details` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `delivery_type` tinyint unsigned NOT NULL,
-  `delivery_time_type` tinyint unsigned NOT NULL,
+  `pickup_type` tinyint unsigned NOT NULL,
+  `pickup_time_type` tinyint unsigned NOT NULL,
   `location_id` bigint unsigned DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lng` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -889,7 +890,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('l3VQHN7tAhj3YjyA2gGKeqcXa63uKHbNCp4n53MT',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNjFJc1RpQzBDOEtvaXdBQXZMdGgxVnV6ZEEzanNOdUd3MThiV3FqMCI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo3MDoiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL2Jvb2tpbmctcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1730072751),('lzEEF6xloI3SiWZkdquq8elcRPmlHPBVaHlsOudj',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZHdEV1NGVzFUUVA2OTN0dk9abFZuSGx0czNBeVZyZHRwb0xSNzNJViI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoxMDU6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZT9jaGFuZ2UtbW9vbnNoaW5lLWxvY2FsZT1lbiI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjEwNToiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL21vb24tc2hpbmUtdXNlci1yZXNvdXJjZS9pbmRleC1wYWdlP2NoYW5nZS1tb29uc2hpbmUtbG9jYWxlPWVuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1729964727),('qtBhY3l4H0LdpAmbWpxi0Es3bSOhboQckv4KCJw5',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo3OntzOjY6Il90b2tlbiI7czo0MDoieHhGTkExWTgwR1pUcFdzWXFDT0w1RWg3QXc3U05DTzd5azNvRjBITSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzg6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjU2OiJsb2dpbl9tb29uc2hpbmVfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjM6InBhc3N3b3JkX2hhc2hfbW9vbnNoaW5lIjtzOjYwOiIkMnkkMTIkYkR5QzNlalZhbVpoRDMwUlJEQWEuT1VqSjNmV2JBL1I5cUJILmNEWFZsRGg0QWdFTDkwNkMiO3M6MjM6ImNoYW5nZS1tb29uc2hpbmUtbG9jYWxlIjtzOjI6ImVuIjt9',1729966035),('Ucr4FwGKZmKK9mmWt83rL1lWpSbOf3YooaoPCmD7',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRElQYlFXRmczVTRmYXJxQ1FMdzFIdUN5MUJzM3pPR2hRejF5OENZeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1729964728);
+INSERT INTO `sessions` VALUES ('eVqo78WHe9zonnCmsqLls5sa3ABenwclik2WP8tc',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUE0wem4yeGhVN3FzcVpUblNKQ2hJNnlDbEltd0hiU1p5Ym1FaEpFNCI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1730116032),('l3VQHN7tAhj3YjyA2gGKeqcXa63uKHbNCp4n53MT',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNjFJc1RpQzBDOEtvaXdBQXZMdGgxVnV6ZEEzanNOdUd3MThiV3FqMCI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo3MDoiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL2Jvb2tpbmctcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1730072751),('lzEEF6xloI3SiWZkdquq8elcRPmlHPBVaHlsOudj',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZHdEV1NGVzFUUVA2OTN0dk9abFZuSGx0czNBeVZyZHRwb0xSNzNJViI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoxMDU6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZT9jaGFuZ2UtbW9vbnNoaW5lLWxvY2FsZT1lbiI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjEwNToiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL21vb24tc2hpbmUtdXNlci1yZXNvdXJjZS9pbmRleC1wYWdlP2NoYW5nZS1tb29uc2hpbmUtbG9jYWxlPWVuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1729964727),('qtBhY3l4H0LdpAmbWpxi0Es3bSOhboQckv4KCJw5',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTo3OntzOjY6Il90b2tlbiI7czo0MDoieHhGTkExWTgwR1pUcFdzWXFDT0w1RWg3QXc3U05DTzd5azNvRjBITSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzg6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9tb29uLXNoaW5lLXVzZXItcmVzb3VyY2UvaW5kZXgtcGFnZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjU2OiJsb2dpbl9tb29uc2hpbmVfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjM6InBhc3N3b3JkX2hhc2hfbW9vbnNoaW5lIjtzOjYwOiIkMnkkMTIkYkR5QzNlalZhbVpoRDMwUlJEQWEuT1VqSjNmV2JBL1I5cUJILmNEWFZsRGg0QWdFTDkwNkMiO3M6MjM6ImNoYW5nZS1tb29uc2hpbmUtbG9jYWxlIjtzOjI6ImVuIjt9',1729966035),('Ucr4FwGKZmKK9mmWt83rL1lWpSbOf3YooaoPCmD7',NULL,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRElQYlFXRmczVTRmYXJxQ1FMdzFIdUN5MUJzM3pPR2hRejF5OENZeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1729964728);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -957,4 +958,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-28  1:58:17
+-- Dump completed on 2024-10-28 21:25:18
