@@ -61,13 +61,13 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     protected function menu(): array
     {
         return [
-            MenuItem::make('Bookings', new BookingResource()),
-            MenuItem::make('Locations', new LocationResource()),
-            MenuItem::make('Temperature modes', new TemperatureModeResource()),
-            MenuItem::make('Consignments', new ConsignmentResource()),
-            MenuItem::make('Consumables', new ConsumableResource()),
-            MenuItem::make('Pallet management', new PalletManagementResource()),
-            MenuItem::make('Additional services', new AdditionalServiceResource()),
+            MenuItem::make('Bookings', new BookingResource())->icon('heroicons.calendar-days'),
+            MenuItem::make('Locations', new LocationResource())->icon('heroicons.map-pin'),
+            MenuItem::make('Temperature modes', new TemperatureModeResource())->icon('heroicons.sun'),
+            MenuItem::make('Consignments', new ConsignmentResource())->icon('heroicons.list-bullet'),
+            MenuItem::make('Consumables', new ConsumableResource())->icon('heroicons.list-bullet'),
+            MenuItem::make('Pallet management', new PalletManagementResource())->icon('heroicons.list-bullet'),
+            MenuItem::make('Additional services', new AdditionalServiceResource())->icon('heroicons.wrench-screwdriver'),
             MenuGroup::make(static fn() => __('moonshine::ui.resource.system'), [
                 MenuItem::make(
                     static fn() => __('moonshine::ui.resource.admins_title'),
