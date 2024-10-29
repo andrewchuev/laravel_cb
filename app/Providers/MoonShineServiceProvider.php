@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\AdditionalServiceResource;
 use App\MoonShine\Resources\BookingResource;
+use App\MoonShine\Resources\ConsignmentResource;
+use App\MoonShine\Resources\ConsumableResource;
 use App\MoonShine\Resources\DeliveryDetailResource;
+use App\MoonShine\Resources\LocationResource;
+use App\MoonShine\Resources\PalletManagementResource;
 use App\MoonShine\Resources\PickupDetailResource;
+use App\MoonShine\Resources\TemperatureModeResource;
 use Closure;
 use Illuminate\Support\Facades\Vite;
 use MoonShine\Contracts\Resources\ResourceContract;
@@ -56,6 +62,12 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     {
         return [
             MenuItem::make('Bookings', new BookingResource()),
+            MenuItem::make('Locations', new LocationResource()),
+            MenuItem::make('Temperature modes', new TemperatureModeResource()),
+            MenuItem::make('Consignments', new ConsignmentResource()),
+            MenuItem::make('Consumables', new ConsumableResource()),
+            MenuItem::make('Pallet management', new PalletManagementResource()),
+            MenuItem::make('Additional services', new AdditionalServiceResource()),
             MenuGroup::make(static fn() => __('moonshine::ui.resource.system'), [
                 MenuItem::make(
                     static fn() => __('moonshine::ui.resource.admins_title'),
