@@ -6,17 +6,12 @@ namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Booking;
+use App\MoonShine\Pages\Booking\BookingIndexPage;
+use App\MoonShine\Pages\Booking\BookingFormPage;
+use App\MoonShine\Pages\Booking\BookingDetailPage;
 
-use MoonShine\Fields\Date;
-use MoonShine\Fields\Email;
-use MoonShine\Fields\Number;
-use MoonShine\Fields\Phone;
-use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
-use MoonShine\Decorations\Block;
-use MoonShine\Fields\ID;
-use MoonShine\Fields\Field;
-use MoonShine\Components\MoonShineComponent;
+use MoonShine\Pages\Page;
 
 /**
  * @extends ModelResource<Booking>
@@ -28,33 +23,18 @@ class BookingResource extends ModelResource
     protected string $title = 'Bookings';
 
     /**
-     * @return list<MoonShineComponent|Field>
+     * @return list<Page>
      */
-    public function fields(): array
+    public function pages(): array
     {
         return [
-            Block::make([
-                ID::make()->sortable(),
-                Text::make('name')->sortable(),
-                Number::make('booking_status')->required(),
-                Number::make('payment_status')->required(),
-                Text::make('company')->required(),
-                Phone::make('phone_number')->required(),
-                Email::make('email')->required(),
-                Text::make('job_reference')->required(),
-                Number::make('dangerous_goods')->required(),
-
-                Number::make('pickup_detail_id')->required(),
-                Number::make('delivery_detail_id')->required(),
-                Number::make('final_price')->required(),
-                Number::make('total_qty')->required(),
-                Number::make('total_spaces')->required(),
-                Number::make('total_volume')->required(),
-                Number::make('total_weight')->required(),
-                Date::make('created_at')->required(),
-                Date::make('updated_at')->required(),
-
-            ]),
+            BookingIndexPage::make($this->title()),
+            BookingFormPage::make(
+                $this->getItemID()
+                    ? __('moonshine::ui.edit')
+                    : __('moonshine::ui.add')
+            ),
+            BookingDetailPage::make(__('moonshine::ui.show')),
         ];
     }
 

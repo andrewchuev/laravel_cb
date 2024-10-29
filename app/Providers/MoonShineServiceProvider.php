@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\MoonShine\Resources\BookingResource;
+use App\MoonShine\Resources\DeliveryDetailResource;
+use App\MoonShine\Resources\PickupDetailResource;
 use Closure;
 use MoonShine\Contracts\Resources\ResourceContract;
 use MoonShine\Menu\MenuElement;
@@ -22,7 +24,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
      */
     protected function resources(): array
     {
-        return [];
+        return [
+            new PickupDetailResource(),
+            new DeliveryDetailResource()
+        ];
     }
 
     /**
