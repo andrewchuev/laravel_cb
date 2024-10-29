@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Location;
 
+use MoonShine\Fields\Text;
 use MoonShine\Pages\Crud\IndexPage;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Fields\Field;
@@ -16,7 +17,15 @@ class LocationIndexPage extends IndexPage
      */
     public function fields(): array
     {
-        return [];
+        return [
+            Text::make('ID','id' ),
+            Text::make('Title', 'title'),
+            Text::make('Longitude', 'lng'),
+            Text::make('Latitude', 'lat'),
+            Text::make('Address', 'address'),
+            Text::make('City', 'city'),
+            Text::make('Postcode', 'postcode'),
+        ];
     }
 
     /**
