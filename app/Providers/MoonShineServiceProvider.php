@@ -8,6 +8,7 @@ use App\MoonShine\Resources\BookingResource;
 use App\MoonShine\Resources\DeliveryDetailResource;
 use App\MoonShine\Resources\PickupDetailResource;
 use Closure;
+use Illuminate\Support\Facades\Vite;
 use MoonShine\Contracts\Resources\ResourceContract;
 use MoonShine\Menu\MenuElement;
 use MoonShine\Menu\MenuGroup;
@@ -19,6 +20,16 @@ use MoonShine\Resources\MoonShineUserRoleResource;
 
 class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 {
+
+    /*public function boot(): void
+    {
+        parent::boot();
+
+        moonShineAssets()->add([
+            Vite::asset('resources/js/app.js')
+        ]);
+    }*/
+
     /**
      * @return list<ResourceContract>
      */
