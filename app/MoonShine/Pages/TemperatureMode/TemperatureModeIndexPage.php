@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\TemperatureMode;
 
+
+use MoonShine\Fields\Text;
 use MoonShine\Pages\Crud\IndexPage;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Fields\Field;
@@ -16,7 +18,9 @@ class TemperatureModeIndexPage extends IndexPage
      */
     public function fields(): array
     {
-        return [];
+        return [
+            Text::make('Title', 'title'),
+        ];
     }
 
     /**

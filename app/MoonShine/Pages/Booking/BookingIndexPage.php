@@ -31,12 +31,12 @@ class BookingIndexPage extends IndexPage
             BelongsTo::make(
                 'Pickup Location',
                 'pickupDetail',
-                fn($item) => "$item->id. $item->address"
+                fn($item) => "$item->address"
             ),
             BelongsTo::make(
                 'Delivery Location',
                 'deliveryDetail',
-                fn($item) => "$item->id. $item->address"
+                fn($item) => "$item->address"
             ),
 
             Number::make('Total volume', 'total_volume')->required(),
