@@ -23,7 +23,7 @@ class LocationResource extends ModelResource
 
     protected string $title = 'Locations';
 
-    protected ?\MoonShine\Enums\PageType $redirectAfterSave = PageType::INDEX;
+    protected ?PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<Page>

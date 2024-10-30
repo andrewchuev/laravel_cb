@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Consumable;
-use App\MoonShine\Pages\Consumable\ConsumableIndexPage;
-use App\MoonShine\Pages\Consumable\ConsumableFormPage;
 use App\MoonShine\Pages\Consumable\ConsumableDetailPage;
-
-use MoonShine\Resources\ModelResource;
+use App\MoonShine\Pages\Consumable\ConsumableFormPage;
+use App\MoonShine\Pages\Consumable\ConsumableIndexPage;
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\Enums\PageType;
 use MoonShine\Pages\Page;
+use MoonShine\Resources\ModelResource;
 
 /**
  * @extends ModelResource<Consumable>
@@ -21,6 +21,7 @@ class ConsumableResource extends ModelResource
     protected string $model = Consumable::class;
 
     protected string $title = 'Consumables';
+    protected ?PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<Page>

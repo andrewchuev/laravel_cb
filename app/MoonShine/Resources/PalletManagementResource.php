@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\PalletManagement;
-use App\MoonShine\Pages\PalletManagement\PalletManagementIndexPage;
-use App\MoonShine\Pages\PalletManagement\PalletManagementFormPage;
 use App\MoonShine\Pages\PalletManagement\PalletManagementDetailPage;
-
-use MoonShine\Resources\ModelResource;
+use App\MoonShine\Pages\PalletManagement\PalletManagementFormPage;
+use App\MoonShine\Pages\PalletManagement\PalletManagementIndexPage;
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\Enums\PageType;
 use MoonShine\Pages\Page;
+use MoonShine\Resources\ModelResource;
 
 /**
  * @extends ModelResource<PalletManagement>
@@ -21,6 +21,7 @@ class PalletManagementResource extends ModelResource
     protected string $model = PalletManagement::class;
 
     protected string $title = 'PalletManagements';
+    protected ?PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<Page>

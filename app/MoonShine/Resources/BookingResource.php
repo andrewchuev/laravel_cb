@@ -10,6 +10,7 @@ use App\MoonShine\Pages\Booking\BookingIndexPage;
 use App\MoonShine\Pages\Booking\BookingFormPage;
 use App\MoonShine\Pages\Booking\BookingDetailPage;
 
+use MoonShine\Enums\PageType;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Pages\Page;
 
@@ -21,6 +22,7 @@ class BookingResource extends ModelResource
     protected string $model = Booking::class;
 
     protected string $title = 'Bookings';
+    protected ?PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<Page>

@@ -10,6 +10,7 @@ use App\MoonShine\Pages\AdditionalService\AdditionalServiceIndexPage;
 use App\MoonShine\Pages\AdditionalService\AdditionalServiceFormPage;
 use App\MoonShine\Pages\AdditionalService\AdditionalServiceDetailPage;
 
+use MoonShine\Enums\PageType;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Pages\Page;
 
@@ -21,6 +22,7 @@ class AdditionalServiceResource extends ModelResource
     protected string $model = AdditionalService::class;
 
     protected string $title = 'AdditionalServices';
+    protected ?PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<Page>

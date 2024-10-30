@@ -8,6 +8,7 @@ use App\Models\DeliveryDetail;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
+use MoonShine\Enums\PageType;
 use MoonShine\Fields\Field;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Text;
@@ -21,6 +22,7 @@ class DeliveryDetailResource extends ModelResource
     protected string $model = DeliveryDetail::class;
 
     protected string $title = 'Delivery Details';
+    protected ?PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<MoonShineComponent|Field>

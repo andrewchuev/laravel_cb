@@ -385,7 +385,7 @@ CREATE TABLE `consignments` (
   PRIMARY KEY (`id`),
   KEY `consignments_additional_service_id_foreign` (`additional_service_id`),
   CONSTRAINT `consignments_additional_service_id_foreign` FOREIGN KEY (`additional_service_id`) REFERENCES `additional_services` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,6 +394,7 @@ CREATE TABLE `consignments` (
 
 LOCK TABLES `consignments` WRITE;
 /*!40000 ALTER TABLE `consignments` DISABLE KEYS */;
+INSERT INTO `consignments` VALUES (1,'Pallet',11,120,120,120,160,NULL,'2024-10-30 17:57:34','2024-10-30 17:57:34'),(2,'Carton',15,10,15,30,100,NULL,'2024-10-30 17:58:29','2024-10-30 17:58:29');
 /*!40000 ALTER TABLE `consignments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -416,7 +417,7 @@ CREATE TABLE `consumables` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -425,6 +426,7 @@ CREATE TABLE `consumables` (
 
 LOCK TABLES `consumables` WRITE;
 /*!40000 ALTER TABLE `consumables` DISABLE KEYS */;
+INSERT INTO `consumables` VALUES (1,'Dry ice',1,1,1,1,1,NULL,'2024-10-30 18:00:40','2024-10-30 18:00:40');
 /*!40000 ALTER TABLE `consumables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -924,7 +926,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('xSOKuOYHw1vJ3xSeWohfZKps4kljorhZN3wGUstp',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoianFZZFF4QkhobVBqeWh2bzkyRms1UG5FdXhtU0Z2YXYxQUNmT0Z6eiI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo5NDoiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL2Jvb2tpbmctcmVzb3VyY2UvYm9va2luZy1kZXRhaWwtcGFnZT9yZXNvdXJjZUl0ZW09MyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1730310706);
+INSERT INTO `sessions` VALUES ('xSOKuOYHw1vJ3xSeWohfZKps4kljorhZN3wGUstp',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoianFZZFF4QkhobVBqeWh2bzkyRms1UG5FdXhtU0Z2YXYxQUNmT0Z6eiI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo5ODoiaHR0cHM6Ly9jaGlsbC1ib29raW5nLmxvY2FsL2FkbWluL3Jlc291cmNlL3BhbGxldC1tYW5hZ2VtZW50LXJlc291cmNlL3BhbGxldC1tYW5hZ2VtZW50LWluZGV4LXBhZ2UiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19',1730311418);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1017,4 +1019,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-30 19:53:40
+-- Dump completed on 2024-10-30 20:04:25

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\PickupDetail;
-
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\Components\MoonShineComponent;
+use MoonShine\Decorations\Block;
+use MoonShine\Enums\PageType;
+use MoonShine\Fields\Field;
+use MoonShine\Fields\ID;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
-use MoonShine\Decorations\Block;
-use MoonShine\Fields\ID;
-use MoonShine\Fields\Field;
-use MoonShine\Components\MoonShineComponent;
 
 /**
  * @extends ModelResource<PickupDetail>
@@ -22,6 +22,8 @@ class PickupDetailResource extends ModelResource
     protected string $model = PickupDetail::class;
 
     protected string $title = 'PickupDetails';
+
+    protected ?PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<MoonShineComponent|Field>

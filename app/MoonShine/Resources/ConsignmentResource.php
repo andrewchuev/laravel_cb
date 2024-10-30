@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Consignment;
-use App\MoonShine\Pages\Consignment\ConsignmentIndexPage;
-use App\MoonShine\Pages\Consignment\ConsignmentFormPage;
 use App\MoonShine\Pages\Consignment\ConsignmentDetailPage;
-
-use MoonShine\Resources\ModelResource;
+use App\MoonShine\Pages\Consignment\ConsignmentFormPage;
+use App\MoonShine\Pages\Consignment\ConsignmentIndexPage;
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\Enums\PageType;
 use MoonShine\Pages\Page;
+use MoonShine\Resources\ModelResource;
 
 /**
  * @extends ModelResource<Consignment>
@@ -21,6 +21,7 @@ class ConsignmentResource extends ModelResource
     protected string $model = Consignment::class;
 
     protected string $title = 'Consignments';
+    protected ?PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<Page>
