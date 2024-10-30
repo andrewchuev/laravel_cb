@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Location;
 
+use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Text;
 use MoonShine\Pages\Crud\FormPage;
 use MoonShine\Components\MoonShineComponent;
@@ -25,6 +26,16 @@ class LocationFormPage extends FormPage
             Text::make('Address', 'address'),
             Text::make('City', 'city'),
             Text::make('Postcode', 'postcode'),
+            BelongsTo::make(
+                'State',
+                'state',
+                fn($item) => "$item->name"
+            ),
+            BelongsTo::make(
+                'Area',
+                'area',
+                fn($item) => "$item->name"
+            ),
         ];
     }
 

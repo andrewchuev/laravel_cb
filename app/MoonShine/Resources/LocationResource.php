@@ -10,6 +10,7 @@ use App\MoonShine\Pages\Location\LocationIndexPage;
 use App\MoonShine\Pages\Location\LocationFormPage;
 use App\MoonShine\Pages\Location\LocationDetailPage;
 
+use MoonShine\Enums\PageType;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Pages\Page;
 
@@ -21,6 +22,8 @@ class LocationResource extends ModelResource
     protected string $model = Location::class;
 
     protected string $title = 'Locations';
+
+    protected ?\MoonShine\Enums\PageType $redirectAfterSave = PageType::INDEX;
 
     /**
      * @return list<Page>
