@@ -41,7 +41,7 @@ CREATE TABLE `additional_services` (
 
 LOCK TABLES `additional_services` WRITE;
 /*!40000 ALTER TABLE `additional_services` DISABLE KEYS */;
-INSERT INTO `additional_services` VALUES (1,'Pallet Wrap',1,1,10,125,'2024-10-30 18:21:48','2024-10-30 18:21:48');
+INSERT INTO `additional_services` VALUES (1,'Pallet Wrap',2,1,10,125,'2024-10-30 18:21:48','2024-10-30 21:02:54');
 /*!40000 ALTER TABLE `additional_services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -641,7 +641,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -650,7 +650,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2020_10_04_115514_create_moonshine_roles_table',2),(5,'2020_10_05_173148_create_moonshine_tables',2),(6,'2022_12_19_115549_create_moonshine_socialites_table',2),(7,'9999_12_20_173629_create_notifications_table',2),(23,'2024_08_23_110909_create_additional_services_table',3),(24,'2024_08_26_121732_create_consumables_table',3),(25,'2024_08_26_172331_create_consignments_table',3),(26,'2024_08_27_190828_create_temperature_modes_table',3),(27,'2024_08_27_202957_create_pallet_management_table',3),(28,'2024_08_28_121237_create_locations_table',3),(29,'2024_08_29_134111_create_pickup_details_table',3),(30,'2024_08_29_134127_create_delivery_details_table',3),(31,'2024_08_30_192221_create_bookings_table',3),(32,'2024_08_30_194823_create_booking_additional_services_table',3),(33,'2024_08_30_195721_create_booking_pallet_management_table',3),(34,'2024_08_30_204235_create_booking_consignment_groups_table',3),(35,'2024_08_30_204609_create_booking_consignments_table',3),(36,'2024_08_30_204908_create_booking_consumables_table',3),(37,'2024_08_30_211153_create_consignment_additional_services_table',3),(38,'2024_10_27_213204_create_personal_access_tokens_table',4),(39,'2024_10_28_192156_rename_columns_in_pickup_details',5),(40,'2024_10_30_152327_create_states_table',6),(44,'2024_10_30_152335_create_areas_table',7),(50,'2024_10_30_152948_add_state_and_area_to_locations_table',8),(51,'2024_10_30_183159_create_options_table',8),(52,'2024_10_30_185339_rename_and_change_columns_in_additional_services_table',8);
+INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2020_10_04_115514_create_moonshine_roles_table',2),(5,'2020_10_05_173148_create_moonshine_tables',2),(6,'2022_12_19_115549_create_moonshine_socialites_table',2),(7,'9999_12_20_173629_create_notifications_table',2),(23,'2024_08_23_110909_create_additional_services_table',3),(24,'2024_08_26_121732_create_consumables_table',3),(25,'2024_08_26_172331_create_consignments_table',3),(26,'2024_08_27_190828_create_temperature_modes_table',3),(27,'2024_08_27_202957_create_pallet_management_table',3),(28,'2024_08_28_121237_create_locations_table',3),(29,'2024_08_29_134111_create_pickup_details_table',3),(30,'2024_08_29_134127_create_delivery_details_table',3),(31,'2024_08_30_192221_create_bookings_table',3),(32,'2024_08_30_194823_create_booking_additional_services_table',3),(33,'2024_08_30_195721_create_booking_pallet_management_table',3),(34,'2024_08_30_204235_create_booking_consignment_groups_table',3),(35,'2024_08_30_204609_create_booking_consignments_table',3),(36,'2024_08_30_204908_create_booking_consumables_table',3),(37,'2024_08_30_211153_create_consignment_additional_services_table',3),(38,'2024_10_27_213204_create_personal_access_tokens_table',4),(39,'2024_10_28_192156_rename_columns_in_pickup_details',5),(40,'2024_10_30_152327_create_states_table',6),(44,'2024_10_30_152335_create_areas_table',7),(50,'2024_10_30_152948_add_state_and_area_to_locations_table',8),(51,'2024_10_30_183159_create_options_table',8),(52,'2024_10_30_185339_rename_and_change_columns_in_additional_services_table',8),(53,'2024_10_30_203658_remove_timestamps_from_options_table',9);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -738,7 +738,7 @@ CREATE TABLE `moonshine_users` (
 
 LOCK TABLES `moonshine_users` WRITE;
 /*!40000 ALTER TABLE `moonshine_users` DISABLE KEYS */;
-INSERT INTO `moonshine_users` VALUES (1,1,'andrew.chuev@gmail.com','$2y$12$bDyC3ejVamZhD30RRDAa.OUjJ3fWbA/R9qBH.cDXVlDh4AgEL906C','Andrew','moonshine_users/yqEmr6ylnAK0vCrEQ6nLcbBIOuzDZ27GgoTLC7GR.jpg','xXJMJwPk7IlVXhJD1npcgoypDWfrdhZkI7yHRk6vmK2spKNTnjJYww3jxzb9','2024-10-26 16:10:17','2024-10-26 17:49:39');
+INSERT INTO `moonshine_users` VALUES (1,1,'andrew.chuev@gmail.com','$2y$12$bDyC3ejVamZhD30RRDAa.OUjJ3fWbA/R9qBH.cDXVlDh4AgEL906C','Andrew','moonshine_users/yqEmr6ylnAK0vCrEQ6nLcbBIOuzDZ27GgoTLC7GR.jpg','bd7dtS025qPGsgJLq5YR2OTU90ErbBWr9xhET8KgSQEb0QQ7t1brwjXHqXM8','2024-10-26 16:10:17','2024-10-26 17:49:39');
 /*!40000 ALTER TABLE `moonshine_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -769,7 +769,7 @@ CREATE TABLE `notifications` (
 
 LOCK TABLES `notifications` WRITE;
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-INSERT INTO `notifications` VALUES ('1b07ec65-9f07-4037-917f-8f30577faefc','MoonShine\\Notifications\\MoonShineDatabaseNotification','MoonShine\\Models\\MoonshineUser',1,'{\"message\":\"File exported\",\"button\":{\"link\":\"https:\\/\\/chill-booking.local\\/storage\\/booking-resource.xlsx\",\"label\":\"Download\"},\"color\":null}',NULL,'2024-10-30 16:39:48','2024-10-30 16:39:48');
+INSERT INTO `notifications` VALUES ('1b07ec65-9f07-4037-917f-8f30577faefc','MoonShine\\Notifications\\MoonShineDatabaseNotification','MoonShine\\Models\\MoonshineUser',1,'{\"message\":\"File exported\",\"button\":{\"link\":\"https:\\/\\/chill-booking.local\\/storage\\/booking-resource.xlsx\",\"label\":\"Download\"},\"color\":null}','2024-10-30 19:44:09','2024-10-30 16:39:48','2024-10-30 19:44:09');
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -785,11 +785,9 @@ CREATE TABLE `options` (
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `options_key_unique` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -798,6 +796,7 @@ CREATE TABLE `options` (
 
 LOCK TABLES `options` WRITE;
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
+INSERT INTO `options` VALUES (1,'additional_service_type_options','{\"1\":\"Counter\",\"2\":\"Toggle\"}','json'),(2,'additional_service_using_options','{\"1\":\"Booking\",\"2\":\"Location\",\"3\":\"Consignment\"}','json');
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -955,7 +954,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('xSOKuOYHw1vJ3xSeWohfZKps4kljorhZN3wGUstp',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoianFZZFF4QkhobVBqeWh2bzkyRms1UG5FdXhtU0Z2YXYxQUNmT0Z6eiI7czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoxMDA6Imh0dHBzOi8vY2hpbGwtYm9va2luZy5sb2NhbC9hZG1pbi9yZXNvdXJjZS9hZGRpdGlvbmFsLXNlcnZpY2UtcmVzb3VyY2UvYWRkaXRpb25hbC1zZXJ2aWNlLWluZGV4LXBhZ2UiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19',1730312509);
+INSERT INTO `sessions` VALUES ('t5mqT5vDR2tWRsRYnHykkTmhxXbr6sZCCdJOfhiL',1,'192.168.88.7','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoibVdQb0hNN2RQekU5TXRFTGJ0VlhSRXZ2eWxlZ2hINEp0aVZPUWxvaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTAwOiJodHRwczovL2NoaWxsLWJvb2tpbmcubG9jYWwvYWRtaW4vcmVzb3VyY2UvYWRkaXRpb25hbC1zZXJ2aWNlLXJlc291cmNlL2FkZGl0aW9uYWwtc2VydmljZS1pbmRleC1wYWdlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1NjoibG9naW5fbW9vbnNoaW5lXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIzOiJwYXNzd29yZF9oYXNoX21vb25zaGluZSI7czo2MDoiJDJ5JDEyJGJEeUMzZWpWYW1aaEQzMFJSREFhLk9VakozZldiQS9SOXFCSC5jRFhWbERoNEFnRUw5MDZDIjt9',1730323548);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1048,4 +1047,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-30 21:14:27
+-- Dump completed on 2024-10-30 23:28:35

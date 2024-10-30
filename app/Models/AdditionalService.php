@@ -10,11 +10,14 @@ class AdditionalService extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type',
-        'using',
+        'type_id',
+        'using_id',
         'max_qty',
         'price',
     ];
 
-
+    /*public function type()
+    {
+        return $this->belongsTo(Option::class);
+    }*/
 }

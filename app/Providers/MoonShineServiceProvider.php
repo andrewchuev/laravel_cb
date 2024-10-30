@@ -11,6 +11,7 @@ use App\MoonShine\Resources\ConsignmentResource;
 use App\MoonShine\Resources\ConsumableResource;
 use App\MoonShine\Resources\DeliveryDetailResource;
 use App\MoonShine\Resources\LocationResource;
+use App\MoonShine\Resources\OptionResource;
 use App\MoonShine\Resources\PalletManagementResource;
 use App\MoonShine\Resources\PickupDetailResource;
 use App\MoonShine\Resources\StateResource;
@@ -72,6 +73,7 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             MenuItem::make('Consumables', new ConsumableResource())->icon('heroicons.list-bullet'),
             MenuItem::make('Pallet management', new PalletManagementResource())->icon('heroicons.list-bullet'),
             MenuItem::make('Additional services', new AdditionalServiceResource())->icon('heroicons.wrench-screwdriver'),
+            MenuItem::make('Options', new OptionResource())->icon('heroicons.wrench-screwdriver'),
             MenuGroup::make(static fn() => __('moonshine::ui.resource.system'), [
                 MenuItem::make(
                     static fn() => __('moonshine::ui.resource.admins_title'),
