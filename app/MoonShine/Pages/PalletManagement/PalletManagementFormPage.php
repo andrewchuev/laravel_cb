@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\PalletManagement;
 
+use MoonShine\Fields\Switcher;
+use MoonShine\Fields\Text;
 use MoonShine\Pages\Crud\FormPage;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Fields\Field;
@@ -16,7 +18,11 @@ class PalletManagementFormPage extends FormPage
      */
     public function fields(): array
     {
-        return [];
+        return [
+            Text::make('Title', 'title'),
+            Switcher::make('Exchangeble', 'exchangeble'),
+            Switcher::make('Transferable', 'transferable'),
+        ];
     }
 
     /**

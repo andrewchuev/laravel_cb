@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\PalletManagement;
 
+use MoonShine\Fields\Switcher;
+use MoonShine\Fields\Text;
 use MoonShine\Pages\Crud\IndexPage;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Fields\Field;
@@ -16,7 +18,12 @@ class PalletManagementIndexPage extends IndexPage
      */
     public function fields(): array
     {
-        return [];
+        return [
+            Text::make('ID', 'id'),
+            Text::make('Title', 'title')->sortable(),
+            Switcher::make('Exchangeble', 'exchangeble')->sortable(),
+            Switcher::make('Transferable', 'transferable')->sortable(),
+        ];
     }
 
     /**
