@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\AdditionalService;
 
+use MoonShine\Fields\Text;
 use MoonShine\Pages\Crud\IndexPage;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Fields\Field;
@@ -16,7 +17,14 @@ class AdditionalServiceIndexPage extends IndexPage
      */
     public function fields(): array
     {
-        return [];
+        return [
+            Text::make('ID', 'id'),
+            Text::make('Title', 'title'),
+            Text::make('Additional service type', 'type'),
+            Text::make('Additional service using', 'using'),
+            Text::make('Max qty', 'max_qty'),
+            Text::make('Price', 'price'),
+        ];
     }
 
     /**

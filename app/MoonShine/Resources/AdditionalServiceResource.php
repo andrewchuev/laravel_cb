@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\AdditionalService;
-use App\MoonShine\Pages\AdditionalService\AdditionalServiceIndexPage;
-use App\MoonShine\Pages\AdditionalService\AdditionalServiceFormPage;
 use App\MoonShine\Pages\AdditionalService\AdditionalServiceDetailPage;
-
+use App\MoonShine\Pages\AdditionalService\AdditionalServiceFormPage;
+use App\MoonShine\Pages\AdditionalService\AdditionalServiceIndexPage;
+use Illuminate\Database\Eloquent\Model;
 use MoonShine\Enums\PageType;
-use MoonShine\Resources\ModelResource;
 use MoonShine\Pages\Page;
+use MoonShine\Resources\ModelResource;
 
 /**
  * @extends ModelResource<AdditionalService>
