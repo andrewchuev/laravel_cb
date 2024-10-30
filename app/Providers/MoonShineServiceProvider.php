@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\MoonShine\Resources\AdditionalServiceResource;
+use App\MoonShine\Resources\AreaResource;
 use App\MoonShine\Resources\BookingResource;
 use App\MoonShine\Resources\ConsignmentResource;
 use App\MoonShine\Resources\ConsumableResource;
@@ -12,6 +13,7 @@ use App\MoonShine\Resources\DeliveryDetailResource;
 use App\MoonShine\Resources\LocationResource;
 use App\MoonShine\Resources\PalletManagementResource;
 use App\MoonShine\Resources\PickupDetailResource;
+use App\MoonShine\Resources\StateResource;
 use App\MoonShine\Resources\TemperatureModeResource;
 use Closure;
 use Illuminate\Support\Facades\Vite;
@@ -63,6 +65,8 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
         return [
             MenuItem::make('Bookings', new BookingResource())->icon('heroicons.calendar-days'),
             MenuItem::make('Locations', new LocationResource())->icon('heroicons.map-pin'),
+            MenuItem::make('States', new StateResource())->icon('heroicons.map-pin'),
+            MenuItem::make('Areas', new AreaResource())->icon('heroicons.map-pin'),
             MenuItem::make('Temperature modes', new TemperatureModeResource())->icon('heroicons.sun'),
             MenuItem::make('Consignments', new ConsignmentResource())->icon('heroicons.list-bullet'),
             MenuItem::make('Consumables', new ConsumableResource())->icon('heroicons.list-bullet'),

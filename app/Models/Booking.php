@@ -24,7 +24,9 @@ class Booking extends Model
         'total_qty',
         'total_spaces',
         'total_volume',
-        'total_weight'
+        'total_weight',
+        'state_id',
+        'area_id',
     ];
 
     public function pickupDetail()

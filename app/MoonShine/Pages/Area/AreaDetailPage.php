@@ -2,32 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\MoonShine\Pages\Location;
+namespace App\MoonShine\Pages\Area;
 
-use MoonShine\Fields\Text;
-use MoonShine\Pages\Crud\IndexPage;
+use MoonShine\Pages\Crud\DetailPage;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Fields\Field;
 use Throwable;
 
-class LocationIndexPage extends IndexPage
+class AreaDetailPage extends DetailPage
 {
     /**
      * @return list<MoonShineComponent|Field>
      */
     public function fields(): array
     {
-        return [
-            Text::make('ID','id' ),
-            Text::make('Title', 'title'),
-            Text::make('Longitude', 'lng'),
-            Text::make('Latitude', 'lat'),
-            Text::make('Address', 'address'),
-            Text::make('City', 'city'),
-            Text::make('Postcode', 'postcode'),
-            Text::make('State', 'state_id'),
-            Text::make('Area', 'area_id'),
-        ];
+        return [];
     }
 
     /**
